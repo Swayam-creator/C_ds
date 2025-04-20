@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void main()
+{
+clrscr();
+struct node
+{
+int amt,ID;
+struct node *next;
+};
+struct node *head,*temp,*newnode;
+head=0;
+int choice,exp,num,rate;
+printf("Enter rate of 1 coffee=");
+scanf("%d",&rate);
+do
+{
+printf("Enter 1 to create a node\n2 for display\n3 for minimum\n4 for maximum\n0 for exit\n=");
+scanf("%d",&exp);
+switch(exp)
+{
+case 1:
+newnode=(struct node*)malloc(sizeof(struct node));
+printf("Enter customer ID=");
+scanf("%d",&newnode->ID);
+printf("Enter number of coffee buy=");
+scanf("%d",&num);
+newnode->amt=(num*rate);
+newnode->next=0;
+if(head==0)
+head=temp=newnode;
+else
+{
+temp->next=newnode;
+temp=newnode;
+}
+break;
+case 2:
+temp=head;
+printf("\nID->Amount\n");
+while(temp!=0)
+{
+printf("%d->%d\n",temp->ID,temp->amt);
+temp=temp->next;
+}
+break;
+case 3:
+temp=head;
+int min,ID1;
+min=temp->amt;
+while(temp!=0)
+{
+if(temp->amt<min)
+{
+min=temp->amt;
+ID1=temp->ID;
+}
+temp=temp->next;
+}
+printf("Minimum BIll:\n");
+printf("\nID->Amount\n");
+printf("%d->%d\n",ID1,min);
+break;
+case 4:
+temp=head;
+int max,ID2;
+max=temp->amt;
+while(temp!=0)
+{
+if(temp->amt>max)
+{
+max=temp->amt;
+ID2=temp->ID;
+}
+temp=temp->next;
+}
+printf("Maximum BIll:\n");
+printf("\nID->Amount\n");
+printf("%d->%d\n",ID2,max);
+break;
+case 0:
+exit(0);
+default:
+printf("Invalid choice");
+}
+}while(choice!=0);
+free(temp);
+getch();
+}
